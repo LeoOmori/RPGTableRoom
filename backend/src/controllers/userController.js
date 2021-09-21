@@ -6,10 +6,8 @@ module.exports = {
     async store(req, res){
 
         const {name,email,password} = req.body;
-
         const passwordHash = await hashPassword(password);
-        console.log(passwordHash)
- 
+
         try{
             const user = await users.findOrCreate({ 
                 where: {email},
@@ -25,25 +23,40 @@ module.exports = {
             }
 
         }catch(e){
-            res.status(500).json({"message":"Internal error while creating a user"})
+            res.status(500).json({"message":"Internal error while creating a user"});
+        }
+    },
+
+    async update(req, res){
+
+        const { userId, name, email } = req.body;
+
+        try{
+            await users.update({name, email},{
+                where:{
+                    id:userId
+                }
+            });
+            res.json({message:"user updated"});
+        }catch(e){
+            res.status(500).json({"message":"Internal error"});
+        }
+    },
+    async show(req, res){
+
+        const { userId } = req.params;
+
+        try{
+
+            const data = await users.findOne({where:{id:userId}});  
+            if(!data) res.status(400).json({"message":"User not found"});
+            res.json(data);
+
+        }catch(e){
+            console.log(e)
+            res.status(500).json({"message":"Internal error"});
         }
 
-
-
-
-    },
-
-    update(req, res){
-
-
-    },
-
-    show(req, res){
-
-
     }
-
-
-
 
 }

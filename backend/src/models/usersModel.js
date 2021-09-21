@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
 
     users.associate = (models) => {
 
-      users.hasMany(models.rooms);
+      users.hasMany(models.rooms,{foreignKey:'ownerId'});
       users.hasMany(models.players)
       users.hasMany(models.characters)
 
