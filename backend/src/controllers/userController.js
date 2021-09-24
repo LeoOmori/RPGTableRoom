@@ -47,7 +47,6 @@ module.exports = {
         const { userId } = req.params;
 
         try{
-
             const data = await users.findOne({where:{id:userId}});  
             if(!data) res.status(400).json({"message":"User not found"});
             res.json(data);

@@ -42,6 +42,10 @@ module.exports = {
         allowNull: true,
         type: Sequelize.JSONB,
       },
+      isPublic: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

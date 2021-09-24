@@ -3,7 +3,6 @@ const { nanoid } = require('nanoid');
 
 module.exports = {
 
-
     async store(req, res){
 
         const {userId,title,description,} = req.body;
@@ -89,9 +88,7 @@ module.exports = {
         const {userId} = req.body;
         const {roomId} = req.params;
 
-
         try{
-
             const data = await rooms.findOne({where:{id:roomId}});
             if(!data) return res.status(400).json({message:"Room not found"});
 

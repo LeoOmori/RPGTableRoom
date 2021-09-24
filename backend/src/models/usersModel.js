@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
 
       users.hasMany(models.rooms,{foreignKey:'ownerId'});
       users.hasMany(models.players)
-      users.hasMany(models.characters)
+      users.hasMany(models.characters,{foreignKey:'ownerId'});
 
     }
   

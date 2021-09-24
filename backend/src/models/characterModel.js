@@ -6,6 +6,8 @@ module.exports = (sequelize, DataTypes) => {
         name: DataTypes.STRING,
         description: DataTypes.STRING,
         sheet: DataTypes.JSONB,
+        isPublic: DataTypes.BOOLEAN,
+
  
     }, {});
   
